@@ -1,0 +1,74 @@
+#1 -  linear scoring model with three features and 1000 data record 
+
+we used ridge and logistic regression to predict which customer is good and which one is bad
+
+    * the data is imbalance so we have to used SMOTE to generate fabricated data
+    * we used feature scaling so the model perform better 
+    * precision score is very important to use ( FP rate effect the precision score and we need to minimize it )
+    
+    
+there are two kind of error in overall 
+
+false positive ( bad customers that have been considered as good one ) 
+false negative ( good customer tht have been considred as a bad one ) 
+
+precision formula  =  Tp / ( Tp + Fp ) 
+
+
+
+
+we have trained two diffrent model
+
+    1 - Logistic regression 
+    
+        1.1 formula 
+        
+           Logistic regression fuction : y = 6.54 * x1 + 7.83 * x2 + 7.48 * x3 + -3.92
+           
+          * we used feasure scaling so the input should firt go Min Max scaler to get in range of [0 , 1 ]
+          
+          for example we have a customer that 
+          
+              1 - average duration call : 20
+              2 - average data usage  : 1000
+              3 - sum of money spending : 1500 
+              
+         max of each feture is : [77.61786188, 3336.96403308, 8129.66991887]
+         min of each feature is : [0.03084039 0.48592024 0.67965926]
+         
+         formula ; x - x.min() / x.max() - x.min()
+             
+             1- scalled avg duration call : 0.257
+             2- scalled avg data usage    : 0.299
+             3- scalled sum of money spending : 0.1844
+             
+         y = 6.54 * ( 0.257 ) + 7.83 * ( 0.299 ) + 7.48 * ( 0.1844 ) - 3.92 = 1.48 
+         
+         the out put of y function should go through a sigmoid function 
+         
+             σ(x) = 1 / (1 + e^(-x)) 
+             σ(1.48) ≈ 0.814974 
+             
+             there is  a **81** percent chance that this customers with above features is a ""good one""
+          
+                
+
+    2 - Ridge Regression 
+        
+        2.1 formula 
+        
+        Ridge regression function : y = 1.20 * x1 + 1.41 * x2 + 1.49 * x3 + -0.24
+
+        use the same data to see the probability in ridge 
+        
+        y = 1.20 * ( 0.257 ) + 1.41 * ( 0.299 ) + 1.49 * (0.1844 ) - 0.24 = 0.76
+        
+        there is  a **76** percent chance that this customers with Ridge regression is a ""good one""
+        
+        
+        
+suggesten use ensemble method to boost our algorithm for example use 10 alogirthm and voting between them .
+        
+        
+       
+            
