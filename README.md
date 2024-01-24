@@ -38,7 +38,7 @@ Developed a linear scoring system to assess the probability of a new customer's 
 
 ## Contributors
 
-- [Omid Ghorbani]
+- [Omid Ghorbani] - Omidghorbaniai2001@gmail.com
 - [Amir Andalib]
 
 
